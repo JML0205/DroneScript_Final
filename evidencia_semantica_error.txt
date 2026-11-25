@@ -1,0 +1,37 @@
+TOKENS
+SI         'SI' (linea 1, columna 1)
+SENSOR     'bateria' (linea 1, columna 4)
+REL_OP     '>' (linea 1, columna 12)
+NUMBER     '120' (linea 1, columna 14)
+ENTONCES   'ENTONCES' (linea 1, columna 18)
+ATERRIZAR  'ATERRIZAR' (linea 1, columna 27)
+
+ARBOL SINTACTICO
+start
+  conditional
+    bateria
+    >
+    120
+    land
+
+AST
+{
+  "tipo": "programa",
+  "instrucciones": [
+    {
+      "tipo": "si",
+      "sensor": "bateria",
+      "operador": ">",
+      "valor": 120.0,
+      "accion": {
+        "tipo": "aterrizar"
+      }
+    }
+  ]
+}
+
+ANALISIS SEMANTICO
+bateria | sensor predefinido | real | ambito=global | dominio=0..100 %
+altura | sensor predefinido | real | ambito=global | dominio=>= 0 m
+ADELANTE/ATRAS/IZQUIERDA/DERECHA | enumeracion | direccion | ambito=global | dominio=valor de DIRECTION
+ERROR: instruccion 1: umbral fuera del dominio del sensor bateria

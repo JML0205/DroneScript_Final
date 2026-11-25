@@ -1,0 +1,21 @@
+start: instruction*
+?instruction: takeoff | land | move | turn | wait | conditional | repeat
+
+takeoff: "DESPEGAR"
+land: "ATERRIZAR"
+move: "MOVER" DIRECTION NUMBER
+turn: "GIRAR" NUMBER
+wait: "ESPERAR" NUMBER
+conditional: "SI" SENSOR REL_OP NUMBER "ENTONCES" action
+?action: land | move | turn | wait | takeoff
+repeat: "REPETIR" INT "VECES" "{" instruction+ "}"
+
+DIRECTION: "ADELANTE" | "ATRAS" | "IZQUIERDA" | "DERECHA"
+SENSOR: "bateria" | "altura"
+REL_OP: "<=" | ">=" | "==" | "<" | ">"
+INT.2: /[0-9]+(?=\s+VECES)/
+NUMBER: /[0-9]+(\.[0-9]+)?/
+COMMENT: /#[^\n]*/
+%ignore COMMENT
+%import common.WS
+%ignore WS

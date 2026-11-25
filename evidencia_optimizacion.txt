@@ -1,0 +1,49 @@
+TOKENS
+REPETIR    'REPETIR' (linea 1, columna 1)
+INT        '1' (linea 1, columna 9)
+VECES      'VECES' (linea 1, columna 11)
+LBRACE     '{' (linea 1, columna 17)
+ESPERAR    'ESPERAR' (linea 2, columna 1)
+NUMBER     '2' (linea 2, columna 9)
+RBRACE     '}' (linea 3, columna 1)
+
+ARBOL SINTACTICO
+start
+  repeat
+    1
+    wait	2
+
+AST
+{
+  "tipo": "programa",
+  "instrucciones": [
+    {
+      "tipo": "repetir",
+      "veces": 1,
+      "instrucciones": [
+        {
+          "tipo": "esperar",
+          "segundos": 2.0
+        }
+      ]
+    }
+  ]
+}
+
+ANALISIS SEMANTICO
+bateria | sensor predefinido | real | ambito=global | dominio=0..100 %
+altura | sensor predefinido | real | ambito=global | dominio=>= 0 m
+ADELANTE/ATRAS/IZQUIERDA/DERECHA | enumeracion | direccion | ambito=global | dominio=valor de DIRECTION
+Resultado: valido segun las reglas semanticas implementadas.
+
+IR SIN OPTIMIZAR
+t1 = 0
+L1:
+IF t1 >= 1 GOTO L2
+ESPERAR 2
+t1 = t1 + 1
+GOTO L1
+L2:
+
+IR OPTIMIZADA
+ESPERAR 2

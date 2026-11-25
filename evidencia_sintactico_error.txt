@@ -1,0 +1,4 @@
+Error de analisis en linea 1, columna 7.
+MOVER ADELANTE
+      ^
+
